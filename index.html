@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jam Dunia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #000000, #434343);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #39ff14; /* Neon Green */
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 20px 30px;
+            border-radius: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.8);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .main-title {
+            font-size: 2.5em;
+            color: #39ff14; /* Neon Green */
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14;
+        }
+
+        .time {
+            font-size: 1.5em;
+            color: #39ff14; /* Neon Green */
+            margin: 20px 0;
+            transition: transform 0.3s ease;
+            text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 15px #39ff14;
+        }
+
+        .time:hover {
+            transform: scale(1.1);
+        }
+
+        .decorative {
+            font-size: 2.5em;
+            color: #39ff14; /* Neon Green */
+            animation: bounce 2s infinite;
+            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .time-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .city {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
+            border-radius: 15px;
+            font-size: 1.2em;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, background 0.3s ease;
+            color: #39ff14; /* Neon Green */
+            text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 15px #39ff14;
+            flex: 0 1 calc(50% - 20px);
+        }
+
+        .city:hover {
+            transform: translateY(-10px);
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .city span {
+            display: block;
+            margin-top: 5px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #39ff14; /* Neon Green */
+            text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 15px #39ff14;
+        }
+
+        @media (max-width: 600px) {
+            .city {
+                flex: 0 1 calc(100% - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">Jam Dunia</h1>
+        <div class="time-container">
+            <div class="city">Tokyo: <span class="time" id="tokyo-time"></span></div>
+            <div class="city">London: <span class="time" id="london-time"></span></div>
+            <div class="city">New York: <span class="time" id="newyork-time"></span></div>
+            <div class="city">Sydney: <span class="time" id="sydney-time"></span></div>
+            <div class="city">Jakarta: <span class="time" id="jakarta-time"></span></div>
+            <div class="city">Paris: <span class="time" id="paris-time"></span></div>
+            <div class="city">Moscow: <span class="time" id="moscow-time"></span></div>
+            <div class="city">Dubai: <span class="time" id="dubai-time"></span></div>
+            <div class="city">Buenos Aires: <span class="time" id="buenosaires-time"></span></div>
+            <div class="city">Cape Town: <span class="time" id="capetown-time"></span></div>
+            <div class="city">Hong Kong: <span class="time" id="hongkong-time"></span></div>
+            <div class="city">Rome: <span class="time" id="rome-time"></span></div>
+            <div class="city">São Paulo: <span class="time" id="saopaulo-time"></span></div>
+            <div class="city">Los Angeles: <span class="time" id="losangeles-time"></span></div>
+        </div>
+        <p class="decorative">🕒</p>
+    </div>
+
+    <script>
+        function updateTime() {
+            const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+
+            const cities = [
+                { id: 'tokyo-time', timezone: 'Asia/Tokyo' },
+                { id: 'london-time', timezone: 'Europe/London' },
+                { id: 'newyork-time', timezone: 'America/New_York' },
+                { id: 'sydney-time', timezone: 'Australia/Sydney' },
+                { id: 'jakarta-time', timezone: 'Asia/Jakarta' },
+                { id: 'paris-time', timezone: 'Europe/Paris' },
+                { id: 'moscow-time', timezone: 'Europe/Moscow' },
+                { id: 'dubai-time', timezone: 'Asia/Dubai' },
+                { id: 'buenosaires-time', timezone: 'America/Argentina/Buenos_Aires' },
+                { id: 'capetown-time', timezone: 'Africa/Johannesburg' },
+                { id: 'hongkong-time', timezone: 'Asia/Hong_Kong' },
+                { id: 'rome-time', timezone: 'Europe/Rome' },
+                { id: 'saopaulo-time', timezone: 'America/Sao_Paulo' },
+                { id: 'losangeles-time', timezone: 'America/Los_Angeles' }
+            ];
+
+            cities.forEach(city => {
+                const time = new Date().toLocaleTimeString('en-US', { ...options, timeZone: city.timezone });
+                document.getElementById(city.id).innerText = time;
+            });
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+  </html>
